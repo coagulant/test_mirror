@@ -3,9 +3,10 @@ from testapp.models import MyModel
 
 
 class TestMirror(TestCase):
-    fixtures = ['anyfixture.json']
 
     def test_fixture(self):
-        MyModel.objects.create(name=1)
+        MyModel.objects.using('default').create(name=1)
+        MyModel.objects.using('slave').create(name=2)
+        MyModel.objects.using('slave').create(name=3)
         self.assertEqual(MyModel.objects.using('default').count(),
                          MyModel.objects.using('slave').count())

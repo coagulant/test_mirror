@@ -66,12 +66,10 @@ DATABASES = {
     },
     'slave': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'testmirror2',
+        'NAME': 'testmirror',
         'HOST': '127.0.0.1',
         'PORT': 5432,
-        'TEST': {
-            'MIRROR': 'default'
-        }
+        'TEST_MIRROR': 'default'
     }
 }
 
