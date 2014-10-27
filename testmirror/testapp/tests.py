@@ -8,5 +8,5 @@ class TestMirror(TestCase):
         MyModel.objects.using('default').create(name=1)
         MyModel.objects.using('slave').create(name=2)
         MyModel.objects.using('slave').create(name=3)
-        self.assertEqual(MyModel.objects.using('default').count(),
-                         MyModel.objects.using('slave').count())
+        self.assertEqual(list(map(repr, MyModel.objects.using('default').all())),
+                         list(map(repr, MyModel.objects.using('slave').all())))
